@@ -3,7 +3,7 @@
 /* Classes */
 const Game = require('./game');
 const Vector = require('./vector');
-
+const Bullet = require('./bullet_pool.js');
 /* Global variables */
 var canvas = document.getElementById('screen');
 var game = new Game(canvas, update, render);
@@ -13,6 +13,7 @@ var player = {
   velocity: {x: 0, y: 0},
   img: new Image()
 }
+var bullets = new Bullet(10);
 player.img.src = 'assets/helicopter.png';
 var backgrounds = [
   new Image(),
@@ -59,6 +60,7 @@ window.onmousedown = function(event) {
   reticule.x = event.offsetX;
   reticule.y = event.offsetY;
   // TODO: Fire bullet in direction of the retciule
+  bullets.add(player.position,{x:1,  y:0});
 }
 
 /**
